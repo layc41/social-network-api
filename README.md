@@ -8,8 +8,6 @@ An API for a social network using Express.js for routing, a MongoDB database, an
 * Mongo
 * Express.js
 * CRUD
-* Object Relational Mapping
-* Models
 
 ## Installation/Use
 1. Clone the repository to your machine. 
