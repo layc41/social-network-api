@@ -13,7 +13,7 @@ const userController = {
         res.status(500).json(err);
       });
   },
-  // get single user by id
+  // get a user by id
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -45,9 +45,7 @@ const userController = {
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      {
-        $set: req.body,
-      },
+      { $set: req.body },
       {
         runValidators: true,
         new: true,
@@ -64,7 +62,7 @@ const userController = {
         res.status(500).json(err);
       });
   },
-  // delete user (BONUS: and delete associated thoughts)
+  // delete user 
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((dbUserData) => {
@@ -72,7 +70,7 @@ const userController = {
           return res.status(404).json({ message: 'No user with this id!' });
         }
 
-        // BONUS: get ids of user's `thoughts` and delete them all
+        // gets ids of user's thoughts and them
         return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
       })
       .then(() => {

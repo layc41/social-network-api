@@ -1,7 +1,7 @@
 const { Thought, User } = require('../models');
 
 const thoughtController = {
-  // get all thoughts
+  // get all the thoughts
   getThoughts(req, res) {
     Thought.find()
       .sort({ createdAt: -1 })
@@ -13,7 +13,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // get single thought by id
+  // get a thought by the id
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((dbThoughtData) => {
@@ -49,7 +49,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // update thought
+  // update a thought
   updateThought(req, res) {
     Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { runValidators: true, new: true })
       .then((dbThoughtData) => {
@@ -63,7 +63,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // delete thought
+  // delete a thought
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((dbThoughtData) => {
